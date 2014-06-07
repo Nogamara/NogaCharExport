@@ -1,21 +1,20 @@
 require "Apollo"
-require "Window"
 
 local NogaCharExport = {}
 
 function NogaCharExport:new(o)
-    o = o or {}
-    setmetatable(o, self)
-    self.__index = self 
-    return o
+	o = o or {}
+	setmetatable(o, self)
+	self.__index = self
+	return o
 end
 
 
 function NogaCharExport:Init()
 	local bHasConfigureButton = false
 	local strConfigureButtonText = ""
-	local tDependencies = {}
-    Apollo.RegisterAddon(self, bHasConfigureButton, strConfigureButtonText, tDependencies)
+	local tDependencies = {"NogaCharLib"}
+	Apollo.RegisterAddon(self, bHasConfigureButton, strConfigureButtonText, tDependencies)
 end
 
 
@@ -37,23 +36,41 @@ function NogaCharExport:OnDocLoaded()
 	end
 end
 
-function NogaCharExport:OnNogaCharExportOn()
-	local NogaCharLib = _G["NogaCharLib"]
-	local GeminiPackages = _G["GeminiPackages"]
-	local json = GeminiPackages:GetPackage("dkjson")
-	
-	local foo = NogaCharLib:GetAll()
-	
-	self.wndMain:FindChild("NEEditBox"):SetText(json.encode(foo))
 
-	self.wndMain:Show(true)
-	-- self.wndMain:Invoke()
+function NogaCharExport:OnNogaCharExportOn()
+	local GeminiPackages = _G["GeminiPackages"]
+	self.json = GeminiPackages:GetPackage("dkjson")
+	self.nogaCharLib = Apollo.GetPackage("NogaCharLib").tPackage
+	self.wndMain:Invoke()
+end
+
+
+function NogaCharExport:OnBtnBaseFn()
+	local data = self.nogaCharLib.GetBaseStats()
+	self.wndMain:FindChild("NEEditBox"):SetText(self.json.encode(data))
+end
+
+
+function NogaCharExport:OnBtnMiscFn()
+	local data = self.nogaCharLib.GetMiscStats()
+	self.wndMain:FindChild("NEEditBox"):SetText(self.json.encode(data))
+end
+
+
+function NogaCharExport:OnBtnCurrencyFn()
+	local data = self.nogaCharLib.GetCurrency()
+	self.wndMain:FindChild("NEEditBox"):SetText(self.json.encode(data))
+end
+
+
+function NogaCharExport:OnBtnAllFn()
+	local data = self.nogaCharLib.GetAll()
+	self.wndMain:FindChild("NEEditBox"):SetText(self.json.encode(data))
 end
 
 
 function NogaCharExport:OnCancel()
-	self.wndMain:Show(false)
-	-- self.wndMain:Close()
+	self.wndMain:Close()
 end
 
 
