@@ -38,8 +38,7 @@ end
 
 
 function NogaCharExport:OnNogaCharExportOn()
-	local GeminiPackages = _G["GeminiPackages"]
-	self.json = GeminiPackages:GetPackage("dkjson")
+	self.json = Apollo.GetPackage("Lib:dkJSON-2.5").tPackage
 	self.nogaCharLib = Apollo.GetPackage("NogaCharLib").tPackage
 	self.wndMain:Invoke()
 end

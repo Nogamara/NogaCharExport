@@ -4,9 +4,8 @@ Export your WildStar character as JSON.
 
 ## Credits
 
-  * GeminiPackages, included
   * NogaCharLib, included
-  * [dkjson.lua](http://dkolf.de/src/dkjson-lua.fsl/home)
+  * [LibJSON](https://github.com/wildstarnasa/LibJSON)
   * [CustomFoV](http://www.curse.com/ws-addons/wildstar/220180-customfov) for some UI inspirations
 
 ## Sample output

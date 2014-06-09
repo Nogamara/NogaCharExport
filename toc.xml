@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Addon Author="Nogamara" APIVersion="8" Name="NogaCharExport" Description="Export your character as JSON" Version="0.2">
-    <Script Name="libs/GeminiPackages.lua"/>
+<Addon Author="Nogamara" APIVersion="8" Name="NogaCharExport" Description="Export your character as JSON" Version="0.3">
     <Script Name="libs/NogaCharLib.lua"/>
-    <Script Name="libs/dkjson.lua"/>
+    <Script Name="libs/LibJSON-2.5.lua"/>
     <Script Name="NogaCharExport.lua"/>
     <Form Name="NogaCharExportForm.xml"/>
 </Addon>
